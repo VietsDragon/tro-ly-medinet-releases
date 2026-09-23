@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.1.0/TroLyMedinet_Portable_v1.1.0.zip",
-  "sha256": "86FB78DE4A58609B587A2908DE649CCCD2EC4D03FC9363C5EC14202BC80F3377",
-  "fileName": "TroLyMedinet_Portable_v1.1.0.zip",
-  "notes": "Chọn ngày có xác nhận đa máy, chạy lượt mới không cần thoát app, giao diện gọn hơn và hỗ trợ cập nhật."
+  "version": "1.2.0",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.0/TroLyMedinet_Portable_v1.2.0.zip",
+  "sha256": "B2DCF98CE442B55ADD5AE765234FDFFAF37E57F9E479FB129B7DA6780A0DD0CA",
+  "fileName": "TroLyMedinet_Portable_v1.2.0.zip",
+  "notes": "Wizard mới cho M11 và KSK doanh nghiệp, dashboard tiến độ, tạo lượt mới an toàn và Excel trình bày rõ ràng hơn."
 }
