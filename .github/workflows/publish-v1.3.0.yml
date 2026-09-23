@@ -1,0 +1,50 @@
+name: Publish v1.3.0
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-v1.3.0.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified artifact
+        env:
+          ARTIFACT_URL: "undefined"
+          OUTER_SHA256: "78e4520cca7edac99a96a354cc2a49afddddb10371708649134cbc112a269c4f"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "$OUTER_SHA256  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+      - name: Locate package
+        id: package
+        run: |
+          PORTABLE="$(find staging -name 'TroLyMedinet_Portable_v1.3.0.zip' -type f -print -quit)"
+          test -n "$PORTABLE"
+          ACTUAL_SHA="$(sha256sum "$PORTABLE" | awk '{print $1}')"
+          echo "portable=$PORTABLE" >> "$GITHUB_OUTPUT"
+          echo "sha=$ACTUAL_SHA" >> "$GITHUB_OUTPUT"
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.3.0 "${{ steps.package.outputs.portable }}" --title "Trợ lý Medinet v1.3.0" --notes "Thiết kế lại toàn bộ màn hình vận hành: dashboard phẳng và gọn, số liệu/tóm tắt tập trung; nhật ký toàn chiều ngang, chiếm phần màn hình còn lại và không còn chồng chữ. Giữ nguyên chức năng. Build Windows và hai bộ kiểm thử Excel đều đạt."
+      - name: Update manifest and clean workflow
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.3.0",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.3.0/TroLyMedinet_Portable_v1.3.0.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Dashboard phẳng, gọn; nhật ký lớn toàn chiều ngang; sửa chồng chữ và khoảng trắng."
+          }
+          EOF
+          rm .github/workflows/publish-v1.3.0.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.3.0.yml
+          git commit -m "Phát hành v1.3.0 giao diện vận hành mới [skip ci]"
+          git push
