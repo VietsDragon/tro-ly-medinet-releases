@@ -1,7 +1,7 @@
 {
-  "version": "1.2.1",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.1/TroLyMedinet_Portable_v1.2.1.zip",
-  "sha256": "ED37327B9713FCFA74B27B3D0BCA97C435CBA395B5933BBD6B6C7F62ED7F9DA1",
-  "fileName": "TroLyMedinet_Portable_v1.2.1.zip",
-  "notes": "Giao diện compact mới: bước dọc, form rộng cân đối, dashboard và nhật ký gọn hơn."
+  "version": "1.2.2",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.2/TroLyMedinet_Portable_v1.2.2.zip",
+  "sha256": "476885F5C1846AE36BAA7FA68D1DC270FA6FF35394C54C7A7EDC3DC87ABE7366",
+  "fileName": "TroLyMedinet_Portable_v1.2.2.zip",
+  "notes": "Wizard installer: chọn tác vụ là bước đầu, mỗi màn hình một bước, ẩn nhật ký khi thiết lập."
 }
