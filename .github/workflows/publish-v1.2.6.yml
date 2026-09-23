@@ -1,0 +1,50 @@
+name: Publish v1.2.6
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-v1.2.6.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified artifact
+        env:
+          ARTIFACT_URL: "https://sdmntprnznorth.oaiusercontent.com/files/00000000-0bb0-820b-9183-1a43ce9559b9/raw?se=2026-09-23T03%3A06%3A51Z&sp=r&sv=2026-02-06&sr=b&scid=5cee54b4-6e6e-4cc5-9ea4-4bfaa343c50a&skoid=f5e14fda-2af7-44a3-9d18-d372ffcad871&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T01%3A58%3A51Z&ske=2026-09-24T01%3A58%3A51Z&sks=b&skv=2026-02-06&sig=/7vMw1TH0tzSUJtVbLEqof5ATieGkbWzmWjCTve8HxA%3D"
+          OUTER_SHA256: "de3d9150c1c6b2f67b07e41bf4ef4619e8923a2bb4388bc700246220b9282844"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "$OUTER_SHA256  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+      - name: Locate package
+        id: package
+        run: |
+          PORTABLE="$(find staging -name 'TroLyMedinet_Portable_v1.2.6.zip' -type f -print -quit)"
+          test -n "$PORTABLE"
+          ACTUAL_SHA="$(sha256sum "$PORTABLE" | awk '{print $1}')"
+          echo "portable=$PORTABLE" >> "$GITHUB_OUTPUT"
+          echo "sha=$ACTUAL_SHA" >> "$GITHUB_OUTPUT"
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.2.6 "${{ steps.package.outputs.portable }}" --title "Trợ lý Medinet v1.2.6" --notes "Xây lại màn hình vận hành: dashboard toàn chiều ngang ở trên; nhật ký mở ngay bên dưới và chiếm toàn bộ phần màn hình còn lại; bỏ khoảng trống giữa màn hình. Build Windows và hai bộ kiểm thử Excel đều đạt."
+      - name: Update manifest and clean workflow
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.2.6",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.6/TroLyMedinet_Portable_v1.2.6.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Dashboard toàn chiều ngang; nhật ký lớn ngay bên dưới; loại bỏ khoảng trống màn hình."
+          }
+          EOF
+          rm .github/workflows/publish-v1.2.6.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.2.6.yml
+          git commit -m "Phát hành v1.2.6 dashboard và nhật ký mới [skip ci]"
+          git push
