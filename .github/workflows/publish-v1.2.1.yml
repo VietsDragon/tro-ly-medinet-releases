@@ -1,0 +1,60 @@
+name: Publish v1.2.1
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-v1.2.1.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download verified build
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri 'https://sdmntprnznorth.oaiusercontent.com/files/00000000-36ac-820b-bd09-ba6868364956/raw?se=2026-09-23T01%3A06%3A15Z&sp=r&sv=2026-02-06&sr=b&scid=2dd5c222-1ac7-4f60-a3bf-833fecba90ce&skoid=f5e14fda-2af7-44a3-9d18-d372ffcad871&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-22T22%3A50%3A46Z&ske=2026-09-23T22%3A50%3A46Z&sks=b&skv=2026-02-06&sig=%2BuAJwUuewJ9ul2WXYvLOe0oyLHKxVAZd08eampn4438%3D' -OutFile artifact.zip
+          $outer = (Get-FileHash artifact.zip -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($outer -ne 'a75fe1ae1a89570a36d38c4aae1ceba1661fd716873c0cf3e4ce9f49fc99594c') { throw "Artifact checksum mismatch" }
+          Expand-Archive -LiteralPath artifact.zip -DestinationPath staging -Force
+          $expected = (Get-Content staging/TroLyMedinet_Portable_v1.2.1.zip.sha256 -Raw).Trim()
+          $actual = (Get-FileHash staging/TroLyMedinet_Portable_v1.2.1.zip -Algorithm SHA256).Hash
+          if ($actual -ne $expected) { throw "Portable checksum mismatch" }
+          "PORTABLE_SHA=$actual" >> $env:GITHUB_ENV
+
+      - name: Create release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.2.1 staging/TroLyMedinet_Portable_v1.2.1.zip --title "Trợ lý Medinet v1.2.1" --notes @"
+          Xây lại giao diện wizard theo bố cục compact.
+
+          - Thanh bước dọc gọn bên trái, biểu mẫu rộng bên phải.
+          - Bỏ dải bước kéo ngang và các khoảng trắng lớn.
+          - Thu gọn control, nhật ký và cân lại dashboard.
+          - Giữ nguyên luồng xử lý ổn định của v1.2.0.
+          - Đã build Windows và vượt cả hai bộ kiểm thử Excel.
+          "@
+
+      - name: Update manifest and clean workflow
+        shell: pwsh
+        run: |
+          $manifest = [ordered]@{
+            version = "1.2.1"
+            downloadUrl = "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.1/TroLyMedinet_Portable_v1.2.1.zip"
+            sha256 = $env:PORTABLE_SHA
+            fileName = "TroLyMedinet_Portable_v1.2.1.zip"
+            notes = "Giao diện compact mới: bước dọc, form rộng cân đối, dashboard và nhật ký gọn hơn."
+          }
+          $manifest | ConvertTo-Json | Set-Content -LiteralPath latest.json -Encoding utf8
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/publish-v1.2.1.yml
+          git add latest.json
+          git commit -m "Phát hành v1.2.1 giao diện compact [skip ci]"
+          git push
