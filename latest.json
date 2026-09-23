@@ -1,6 +1,6 @@
 {
-  "version": "1.3.0",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.3.0/TroLyMedinet_Portable_v1.3.0.zip",
-  "sha256": "d5ac78513cbe6d831dab24c74a939bce11cd035328899768caf92235ba97da6a",
-  "notes": "Dashboard phẳng, gọn; nhật ký lớn toàn chiều ngang; sửa chồng chữ và khoảng trắng."
+  "version": "1.4.0",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.0/TroLyMedinet_Portable_v1.4.0.zip",
+  "sha256": "0ed80bf931e0d082a1010a080535c746a784a077952e20f6ced5bf316cfc1ef8",
+  "notes": "Tự phục hồi mạng/Medinet; dashboard điều hành mới; tạo lượt mới đúng tác vụ; thông báo hoàn tất."
 }
