@@ -1,6 +1,6 @@
 {
-  "version": "1.2.6",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.6/TroLyMedinet_Portable_v1.2.6.zip",
-  "sha256": "0feaa955c4d44f30776277ae7fa815a429c2fe58e718e617314d5bc3580e72fb",
-  "notes": "Dashboard toàn chiều ngang; nhật ký lớn ngay bên dưới; loại bỏ khoảng trống màn hình."
+  "version": "1.3.0",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.3.0/TroLyMedinet_Portable_v1.3.0.zip",
+  "sha256": "d5ac78513cbe6d831dab24c74a939bce11cd035328899768caf92235ba97da6a",
+  "notes": "Dashboard phẳng, gọn; nhật ký lớn toàn chiều ngang; sửa chồng chữ và khoảng trắng."
 }
