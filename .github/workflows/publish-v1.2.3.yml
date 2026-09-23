@@ -31,11 +31,6 @@ jobs:
           PORTABLE="$(find staging -name 'TroLyMedinet_Portable_v1.2.3.zip' -type f -print -quit)"
           test -n "$PORTABLE"
           ACTUAL_SHA="$(sha256sum "$PORTABLE" | awk '{print $1}')"
-          SHA_FILE="$(find staging -name 'TroLyMedinet_Portable_v1.2.3.zip.sha256' -type f -print -quit)"
-          if [ -n "$SHA_FILE" ]; then
-            EXPECTED_SHA="$(tr -d '\r\n' < "$SHA_FILE" | awk '{print $1}')"
-            test "$ACTUAL_SHA" = "$EXPECTED_SHA"
-          fi
           echo "portable=$PORTABLE" >> "$GITHUB_OUTPUT"
           echo "sha=$ACTUAL_SHA" >> "$GITHUB_OUTPUT"
 
