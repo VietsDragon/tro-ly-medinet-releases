@@ -1,0 +1,53 @@
+name: Publish v1.2.2
+on:
+  push:
+    paths: ['.github/workflows/publish-v1.2.2.yml']
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified build
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri 'https://sdmntpraustraliaeast.oaiusercontent.com/files/00000000-49b0-81fa-a267-38330821caad/raw?se=2026-09-23T01%3A34%3A38Z&sp=r&sv=2026-02-06&sr=b&scid=7e15ac5c-94ba-40bc-94d3-08a1b4ec12c6&skoid=f5e14fda-2af7-44a3-9d18-d372ffcad871&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T01%3A18%3A29Z&ske=2026-09-24T01%3A18%3A29Z&sks=b&skv=2026-02-06&sig=6YZ2zW3eh4vRAH0TOY8RUwoCgbJ7ExqgC2QFmVFL2p4%3D' -OutFile artifact.zip
+          $outer=(Get-FileHash artifact.zip -Algorithm SHA256).Hash.ToLowerInvariant()
+          if($outer -ne '14b303f3df6d0189287aaf5ec6ed3f07fd372647f2dabeb5aa9fb13db938bb03'){throw "Artifact checksum mismatch"}
+          Expand-Archive artifact.zip staging -Force
+          $expected=(Get-Content staging/TroLyMedinet_Portable_v1.2.2.zip.sha256 -Raw).Trim()
+          $actual=(Get-FileHash staging/TroLyMedinet_Portable_v1.2.2.zip -Algorithm SHA256).Hash
+          if($actual -ne $expected){throw "Portable checksum mismatch"}
+          "PORTABLE_SHA=$actual" >> $env:GITHUB_ENV
+      - name: Create release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.2.2 staging/TroLyMedinet_Portable_v1.2.2.zip --title "Trợ lý Medinet v1.2.2" --notes @"
+          Wizard kiểu installer đúng nghĩa.
+
+          - Bước đầu chọn tác vụ, không còn thanh chuyển M11/KSK trên đầu.
+          - Mỗi màn hình chỉ hiển thị nội dung của đúng một bước.
+          - Wizard mở gọn giữa màn hình, không phóng toàn màn hình.
+          - Nhật ký chỉ xuất hiện sau khi bắt đầu chạy.
+          - Dashboard tự mở toàn màn hình để theo dõi.
+          - Đã build Windows và vượt cả hai bộ kiểm thử Excel.
+          "@
+      - name: Update manifest and clean
+        shell: pwsh
+        run: |
+          [ordered]@{
+            version="1.2.2"
+            downloadUrl="https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.2/TroLyMedinet_Portable_v1.2.2.zip"
+            sha256=$env:PORTABLE_SHA
+            fileName="TroLyMedinet_Portable_v1.2.2.zip"
+            notes="Wizard installer: chọn tác vụ là bước đầu, mỗi màn hình một bước, ẩn nhật ký khi thiết lập."
+          } | ConvertTo-Json | Set-Content latest.json -Encoding utf8
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/publish-v1.2.2.yml
+          git add latest.json
+          git commit -m "Phát hành v1.2.2 wizard installer [skip ci]"
+          git push
