@@ -1,0 +1,65 @@
+name: Publish v1.2.3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-v1.2.3.yml
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download verified build artifact
+        env:
+          ARTIFACT_URL: "https://sdmntprnznorth.oaiusercontent.com/files/00000000-2450-820b-b577-b56859bea71a/raw?se=2026-09-23T01%3A58%3A52Z&sp=r&sv=2026-02-06&sr=b&scid=c196ab57-5bd3-40d8-8405-a5f6520962ab&skoid=f5e14fda-2af7-44a3-9d18-d372ffcad871&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T01%3A27%3A20Z&ske=2026-09-24T01%3A27%3A20Z&sks=b&skv=2026-02-06&sig=1IVFvFkCsAbgwKSCLmVGdLBw3ZtqpZJ5l/Z%2Bbe4w%2BuE%3D"
+          OUTER_SHA256: "6e6b03fec073fad0b83c64a033396af2b6f5425efe5552d13859a88122a5f2ee"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "$OUTER_SHA256  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+
+      - name: Verify portable package
+        id: package
+        run: |
+          PORTABLE="$(find staging -name 'TroLyMedinet_Portable_v1.2.3.zip' -type f -print -quit)"
+          test -n "$PORTABLE"
+          ACTUAL_SHA="$(sha256sum "$PORTABLE" | awk '{print $1}')"
+          SHA_FILE="$(find staging -name 'TroLyMedinet_Portable_v1.2.3.zip.sha256' -type f -print -quit)"
+          if [ -n "$SHA_FILE" ]; then
+            EXPECTED_SHA="$(tr -d '\r\n' < "$SHA_FILE" | awk '{print $1}')"
+            test "$ACTUAL_SHA" = "$EXPECTED_SHA"
+          fi
+          echo "portable=$PORTABLE" >> "$GITHUB_OUTPUT"
+          echo "sha=$ACTUAL_SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.2.3 "${{ steps.package.outputs.portable }}" \
+            --title "Trợ lý Medinet v1.2.3" \
+            --notes "Xây lại giao diện: đăng nhập dùng chung trước khi chọn tác vụ; wizard riêng gọn cho M11/KSK doanh nghiệp; dashboard một mặt làm việc sạch; nhật ký thu gọn mặc định. Build Windows và hai bộ kiểm thử Excel đều đạt."
+
+      - name: Update automatic-update manifest and remove one-time workflow
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.2.3",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.3/TroLyMedinet_Portable_v1.2.3.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Đăng nhập dùng chung trước khi chọn tác vụ; wizard M11/KSK gọn; dashboard một mặt làm việc; nhật ký thu gọn mặc định."
+          }
+          EOF
+          rm .github/workflows/publish-v1.2.3.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.2.3.yml
+          git commit -m "Phát hành v1.2.3 giao diện mới [skip ci]"
+          git push
