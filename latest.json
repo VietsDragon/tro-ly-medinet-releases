@@ -1,6 +1,6 @@
 {
-  "version": "1.2.3",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.3/TroLyMedinet_Portable_v1.2.3.zip",
-  "sha256": "3e564b419df26cf56378589b812fc85aee9f362058dedd42d57b871ed3e7c826",
-  "notes": "Đăng nhập dùng chung trước khi chọn tác vụ; wizard M11/KSK gọn; dashboard một mặt làm việc; nhật ký thu gọn mặc định."
+  "version": "1.2.4",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.2.4/TroLyMedinet_Portable_v1.2.4.zip",
+  "sha256": "1f37d11865e5e5778c5303b27c0c45e292b25fb69afa7cc58afe91248e7b368c",
+  "notes": "Sửa lỗi khởi động giao diện v1.2.3; giữ nguyên wizard và dashboard mới."
 }
