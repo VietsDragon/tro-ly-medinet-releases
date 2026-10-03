@@ -1,0 +1,53 @@
+name: Publish v1.4.2
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-v1.4.2.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified artifact
+        env:
+          ARTIFACT_URL: "https://sdmntpraustraliaeast.oaiusercontent.com/files/00000000-a4ec-81fa-954c-a16ed017ed5e/raw?se=2026-10-03T14%3A52%3A59Z&sp=r&sv=2026-02-06&sr=b&scid=20dba815-bfbe-4982-9ea7-f2bc15da5f3a&skoid=697dc613-6c29-4a76-87a7-d1b783c6d43f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-02T22%3A44%3A17Z&ske=2026-10-03T22%3A44%3A17Z&sks=b&skv=2026-02-06&sig=bDvSY%2BvTya0IxwdrYr920FokOnlMjPFd2jTbX3FKvZs%3D"
+          OUTER_SHA256: "3901af1d77cbde09c9056672ec17405fc05fc0fc5cb28bc3ca662cea3b7f408a"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "$OUTER_SHA256  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+      - name: Locate package
+        id: package
+        run: |
+          PORTABLE="$(find staging -name 'TroLyMedinet_Portable_v1.4.2.zip' -type f -print -quit)"
+          test -n "$PORTABLE"
+          ACTUAL_SHA="$(sha256sum "$PORTABLE" | awk '{print $1}')"
+          echo "cf9f61d70704a8b0d7c50a4d440f155d4c6c53201006d4cc0122cb66df612924  $PORTABLE" | sha256sum -c -
+          echo "portable=$PORTABLE" >> "$GITHUB_OUTPUT"
+          echo "sha=$ACTUAL_SHA" >> "$GITHUB_OUTPUT"
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.4.2 "${{ steps.package.outputs.portable }}" --title "Trợ lý Medinet v1.4.2" --notes "Mẫu Excel công ty 15 cột theo mẫu bệnh viện; gom kết quả xét nghiệm chi tiết, giữ đơn vị; sheet KIỂM TRA ngay sau TỔNG HỢP; chọn hồ sơ trùng CCCD đầy đủ nhất. Build Windows và hai bộ kiểm thử Excel đều đạt."
+      - name: Update manifest and clean workflow
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.4.2",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.2/TroLyMedinet_Portable_v1.4.2.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Mẫu Excel công ty 15 cột; gom xét nghiệm chi tiết; chọn hồ sơ đầy đủ nhất; kiểm tra dễ hơn.",
+            "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.2/TroLyMedinet_Portable_v1.4.2.zip",
+            "fileName": "TroLyMedinet_Portable_v1.4.2.zip"
+          }
+          EOF
+          rm .github/workflows/publish-v1.4.2.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.4.2.yml
+          git commit -m "Phát hành v1.4.2 ổn định và giao diện mới [skip ci]"
+          git push
