@@ -1,8 +1,8 @@
 {
-  "version": "1.4.0",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.0/TroLyMedinet_Portable_v1.4.0.zip",
-  "sha256": "0ed80bf931e0d082a1010a080535c746a784a077952e20f6ced5bf316cfc1ef8",
-  "notes": "Tự phục hồi mạng/Medinet; dashboard điều hành mới; tạo lượt mới đúng tác vụ; thông báo hoàn tất.",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.0/TroLyMedinet_Portable_v1.4.0.zip",
-  "fileName": "TroLyMedinet_Portable_v1.4.0.zip"
+  "version": "1.4.2",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.2/TroLyMedinet_Portable_v1.4.2.zip",
+  "sha256": "cf9f61d70704a8b0d7c50a4d440f155d4c6c53201006d4cc0122cb66df612924",
+  "notes": "Mẫu Excel công ty 15 cột; gom xét nghiệm chi tiết; chọn hồ sơ đầy đủ nhất; kiểm tra dễ hơn.",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.2/TroLyMedinet_Portable_v1.4.2.zip",
+  "fileName": "TroLyMedinet_Portable_v1.4.2.zip"
 }
