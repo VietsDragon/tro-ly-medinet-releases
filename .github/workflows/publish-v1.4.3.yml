@@ -1,0 +1,50 @@
+name: Publish v1.4.3
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-v1.4.3.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify tested package
+        env:
+          ARTIFACT_URL: "https://sdmntprnznorth.oaiusercontent.com/files/00000000-8068-820b-837f-32eb020ad71f/raw?se=2026-10-03T16%3A28%3A33Z&sp=r&sv=2026-02-06&sr=b&scid=07b6835c-bda4-4531-a4b1-4da6bf094512&skoid=697dc613-6c29-4a76-87a7-d1b783c6d43f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-02T19%3A48%3A49Z&ske=2026-10-03T19%3A48%3A49Z&sks=b&skv=2026-02-06&sig=c7RYYdz1jl7LI4QsfnMux1NHFrdzWnidUdUDOGu5p%2BI%3D"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "9c27dbd85faa6d1eeaa6495dcab9474d8a3173fbbbf5365c510e8614505655cf  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+      - name: Verify portable checksum
+        id: package
+        run: |
+          PORTABLE="staging/TroLyMedinet_Portable_v1.4.3.zip"
+          EXPECTED="$(tr -d '\r\n' < "$PORTABLE.sha256" | tr 'A-F' 'a-f')"
+          echo "$EXPECTED  $PORTABLE" | sha256sum -c -
+          echo "sha=$EXPECTED" >> "$GITHUB_OUTPUT"
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.4.3 staging/TroLyMedinet_Portable_v1.4.3.zip --title "Trợ lý Medinet v1.4.3" --notes "Bỏ cố định hàng/cột trong file xuất. Tách từng chỉ số máu và nước tiểu thành một dòng trong cùng ô; giữ nguyên giá trị, đơn vị và nội dung kết quả. Build Windows và hai bộ kiểm tra Excel đều đạt."
+      - name: Update automatic update manifest
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.4.3",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.3/TroLyMedinet_Portable_v1.4.3.zip",
+            "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.3/TroLyMedinet_Portable_v1.4.3.zip",
+            "fileName": "TroLyMedinet_Portable_v1.4.3.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Bỏ cố định hàng/cột; mỗi chỉ số xét nghiệm xuống dòng riêng, giữ nguyên giá trị và đơn vị."
+          }
+          EOF
+          rm .github/workflows/publish-v1.4.3.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.4.3.yml
+          git commit -m "Publish v1.4.3 and update manifest [skip ci]"
+          git push
