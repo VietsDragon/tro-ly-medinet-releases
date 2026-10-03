@@ -1,8 +1,8 @@
 {
-  "version": "1.4.3",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.3/TroLyMedinet_Portable_v1.4.3.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.3/TroLyMedinet_Portable_v1.4.3.zip",
-  "fileName": "TroLyMedinet_Portable_v1.4.3.zip",
-  "sha256": "3de7a67fad48bcc043a8bbe7d8c39251b4cf8fd36d998fb5b27b2e528d0979a9",
-  "notes": "Bỏ cố định hàng/cột; mỗi chỉ số xét nghiệm xuống dòng riêng, giữ nguyên giá trị và đơn vị."
+  "version": "1.4.4",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.4/TroLyMedinet_Portable_v1.4.4.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.4/TroLyMedinet_Portable_v1.4.4.zip",
+  "fileName": "TroLyMedinet_Portable_v1.4.4.zip",
+  "sha256": "62d3fa128d79700001ed1343f57650896637dbc1a7f63876346b2e76e465ca3e",
+  "notes": "Sửa thiếu phân loại sức khỏe và bệnh tật khi xuất báo cáo Medinet."
 }
