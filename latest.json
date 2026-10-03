@@ -1,8 +1,8 @@
 {
-  "version": "1.4.5",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.5/TroLyMedinet_Portable_v1.4.5.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.5/TroLyMedinet_Portable_v1.4.5.zip",
-  "fileName": "TroLyMedinet_Portable_v1.4.5.zip",
-  "sha256": "4fd6d574bc20ef0ae511065745ca7ea802ec57ad57f4755ed0c69c3201540a29",
-  "notes": "Tự căn chiều cao hàng theo nội dung; tránh che chữ, bảo toàn nội dung dài."
+  "version": "1.4.7",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.7/TroLyMedinet_Portable_v1.4.7.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.7/TroLyMedinet_Portable_v1.4.7.zip",
+  "fileName": "TroLyMedinet_Portable_v1.4.7.zip",
+  "sha256": "3f7235ec8f86556455410e7461f2c21229bc5213a9651a90f2185b5dec43d0da",
+  "notes": "Thêm AutoFit thực sự qua Excel/WPS sau xuất; nhật ký báo rõ thành công hoặc chưa thực hiện được."
 }
