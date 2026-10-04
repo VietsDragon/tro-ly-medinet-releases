@@ -1,8 +1,8 @@
 {
-  "version": "1.4.7",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.7/TroLyMedinet_Portable_v1.4.7.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.7/TroLyMedinet_Portable_v1.4.7.zip",
-  "fileName": "TroLyMedinet_Portable_v1.4.7.zip",
-  "sha256": "3f7235ec8f86556455410e7461f2c21229bc5213a9651a90f2185b5dec43d0da",
-  "notes": "Thêm AutoFit thực sự qua Excel/WPS sau xuất; nhật ký báo rõ thành công hoặc chưa thực hiện được."
+  "version": "1.4.8",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.8/TroLyMedinet_Portable_v1.4.8.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.8/TroLyMedinet_Portable_v1.4.8.zip",
+  "fileName": "TroLyMedinet_Portable_v1.4.8.zip",
+  "sha256": "12ca3257d023667a0e925fffced44f7026ce03f113a3af8044bf1e4c57c4190a",
+  "notes": "Thêm X-quang cột M; định dạng chẩn đoán và xét nghiệm; sửa SLBC, Nitrit 5120 và sentence case đề nghị."
 }
