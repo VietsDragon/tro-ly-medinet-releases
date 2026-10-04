@@ -1,8 +1,8 @@
 {
-  "version": "1.4.9",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.9/TroLyMedinet_Portable_v1.4.9.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.9/TroLyMedinet_Portable_v1.4.9.zip",
-  "fileName": "TroLyMedinet_Portable_v1.4.9.zip",
-  "sha256": "a41c74140dd6668e1934a2eee828c902495d8210b05618456b9470dffaf5ba93",
-  "notes": "Chuẩn hóa X-quang về sentence case; các kết luận bình thường thành Tim phổi bình thường."
+  "version": "1.4.10",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.10/TroLyMedinet_Portable_v1.4.10.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.10/TroLyMedinet_Portable_v1.4.10.zip",
+  "fileName": "TroLyMedinet_Portable_v1.4.10.zip",
+  "sha256": "21139fab962e9481ca357c0513090b740479ce3087e81d4edaef8668731f60ab",
+  "notes": "Sửa xuống dòng trên toàn bộ file xuất; Excel/WPS tự ngắt chữ theo độ rộng cột. Giữ nhóm chẩn đoán, xét nghiệm, AutoFit và nội dung dài."
 }
