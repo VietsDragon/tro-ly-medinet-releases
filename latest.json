@@ -1,8 +1,8 @@
 {
-  "version": "1.4.8",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.8/TroLyMedinet_Portable_v1.4.8.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.8/TroLyMedinet_Portable_v1.4.8.zip",
-  "fileName": "TroLyMedinet_Portable_v1.4.8.zip",
-  "sha256": "12ca3257d023667a0e925fffced44f7026ce03f113a3af8044bf1e4c57c4190a",
-  "notes": "Thêm X-quang cột M; định dạng chẩn đoán và xét nghiệm; sửa SLBC, Nitrit 5120 và sentence case đề nghị."
+  "version": "1.4.9",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.9/TroLyMedinet_Portable_v1.4.9.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.9/TroLyMedinet_Portable_v1.4.9.zip",
+  "fileName": "TroLyMedinet_Portable_v1.4.9.zip",
+  "sha256": "a41c74140dd6668e1934a2eee828c902495d8210b05618456b9470dffaf5ba93",
+  "notes": "Chuẩn hóa X-quang về sentence case; các kết luận bình thường thành Tim phổi bình thường."
 }
