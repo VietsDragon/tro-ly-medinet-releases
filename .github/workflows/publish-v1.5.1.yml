@@ -1,0 +1,55 @@
+name: Publish v1.5.1
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-v1.5.1.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify tested package
+        env:
+          ARTIFACT_URL: "https://sdmntprnznorth.oaiusercontent.com/files/00000000-2f70-820b-a711-7279d645c2e1/raw?se=2026-10-05T12%3A59%3A17Z&sp=r&sv=2026-02-06&sr=b&scid=9e9079a4-4aff-4b77-a883-8d4853503a42&skoid=697dc613-6c29-4a76-87a7-d1b783c6d43f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-05T02%3A06%3A31Z&ske=2026-10-06T02%3A06%3A31Z&sks=b&skv=2026-02-06&sig=RdZn566kKbl0tj8WOEzpuFllVyn1w7yR1wthPntoEFk%3D"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "6adb085446645cfabee6ae6c5f69f2e46050c49e5d8dfd419d755ed7b1ba9d86  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+      - name: Verify portable checksum
+        id: package
+        run: |
+          PORTABLE="staging/TroLyMedinet_Portable_v1.5.1.zip"
+          EXPECTED="$(tr -d '\r\n' < "$PORTABLE.sha256" | tr 'A-F' 'a-f')"
+          echo "$EXPECTED  $PORTABLE" | sha256sum -c -
+          echo "sha=$EXPECTED" >> "$GITHUB_OUTPUT"
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.5.1 staging/TroLyMedinet_Portable_v1.5.1.zip --title "Trợ lý Medinet v1.5.1" --notes "Sửa lỗi danh sách KSKTD không xuất cột Hình thức chi trả dù Medinet đã lọc Ngân sách thành phố hỗ trợ. Xác nhận bộ lọc sau Xem và gắn bằng chứng với SHA256, khoảng ngày, chi trả, số dòng của file tải về. Nếu có cột chi trả vẫn kiểm tra từng dòng. Áp dụng chung M2/M3/M4. Build Windows và kiểm thử Excel đã đạt. Chưa triển khai UPSERT chồng ngày; import Dashboard vẫn yêu cầu file lũy kế đầy đủ."
+      - name: Update automatic update manifest
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.5.1",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.1/TroLyMedinet_Portable_v1.5.1.zip",
+            "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.1/TroLyMedinet_Portable_v1.5.1.zip",
+            "fileName": "TroLyMedinet_Portable_v1.5.1.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Sửa lỗi thiếu cột chi trả trong Excel KSKTD bằng xác nhận bộ lọc Medinet gắn với file. Chưa triển khai UPSERT."
+          }
+          EOF
+          rm .github/workflows/publish-v1.5.1.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.5.1.yml
+          git commit -m "Publish v1.5.1 and update manifest [skip ci]"
+          git push
+
+      - name: Remove superseded release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release delete v1.5.0 --yes --cleanup-tag
