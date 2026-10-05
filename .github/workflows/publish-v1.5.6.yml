@@ -1,0 +1,55 @@
+name: Publish v1.5.6
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-v1.5.6.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify tested package
+        env:
+          ARTIFACT_URL: "https://sdmntprnznorth.oaiusercontent.com/files/00000000-4ac0-820b-aff7-6ee0c6c56718/raw?se=2026-10-05T17%3A07%3A59Z&sp=r&sv=2026-02-06&sr=b&scid=9f5b1510-c1e9-4739-9931-51c455bc0bd7&skoid=697dc613-6c29-4a76-87a7-d1b783c6d43f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-04T22%3A30%3A52Z&ske=2026-10-05T22%3A30%3A52Z&sks=b&skv=2026-02-06&sig=Km38eIHLv3NbaTLerYG8Kdb8Cvckgr9q20EX0JmPL9w%3D"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "c36562010b7bc18beb5851bae9648846090a98f274d3528335cd970f3be7735a  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+      - name: Verify portable checksum
+        id: package
+        run: |
+          PORTABLE="staging/TroLyMedinet_Portable_v1.5.6.zip"
+          EXPECTED="$(tr -d '\r\n' < "$PORTABLE.sha256" | tr 'A-F' 'a-f')"
+          echo "$EXPECTED  $PORTABLE" | sha256sum -c -
+          echo "sha=$EXPECTED" >> "$GITHUB_OUTPUT"
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.5.6 staging/TroLyMedinet_Portable_v1.5.6.zip --title "Trợ lý Medinet v1.5.6" --notes "Lưu checkpoint để khôi phục lượt KSKTD dang dở kể cả sau khi đóng app. Kiểm tra hash, ngày, số dòng và bộ lọc trước khi dùng lại các file/phần đã tải; hỗ trợ đối chiếu file từ v1.5.5. Xác nhận trước khi Dừng; không để nút Dừng nghiệp vụ khác hủy KSKTD. Đọc, kiểm tra, ghép Excel chạy luồng nền và hiển thị thời gian chờ. Giữ dấu vết D12/import, không tự lặp cập nhật chưa xác nhận. Build Windows và các bộ kiểm thử Excel/checkpoint đã đạt. Cần kiểm chứng khôi phục trên máy đang giữ lượt cũ. Chưa triển khai UPSERT."
+      - name: Update automatic update manifest
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.5.6",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.6/TroLyMedinet_Portable_v1.5.6.zip",
+            "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.6/TroLyMedinet_Portable_v1.5.6.zip",
+            "fileName": "TroLyMedinet_Portable_v1.5.6.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Khôi phục KSKTD từ file đã tải hợp lệ; xác nhận Dừng và xử lý Excel trên luồng nền."
+          }
+          EOF
+          rm .github/workflows/publish-v1.5.6.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.5.6.yml
+          git commit -m "Publish v1.5.6 and update manifest [skip ci]"
+          git push
+
+      - name: Remove superseded release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release delete v1.5.5 --yes --cleanup-tag
