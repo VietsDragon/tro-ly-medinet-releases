@@ -1,8 +1,8 @@
 {
-  "version": "1.5.0",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.0/TroLyMedinet_Portable_v1.5.0.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.0/TroLyMedinet_Portable_v1.5.0.zip",
-  "fileName": "TroLyMedinet_Portable_v1.5.0.zip",
-  "sha256": "88aef6837585833501972eb42c71e133ffca441c7b5edbd8394b2c6b9668fc2e",
-  "notes": "Đồng bộ KSKTD sáu nguồn, tách chi trả doanh nghiệp, xuất CLEAN và cập nhật D12 + import Dashboard. Cần kiểm chứng lượt dữ liệu thật."
+  "version": "1.5.1",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.1/TroLyMedinet_Portable_v1.5.1.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.1/TroLyMedinet_Portable_v1.5.1.zip",
+  "fileName": "TroLyMedinet_Portable_v1.5.1.zip",
+  "sha256": "a7e504cf45340e599dbf145316714b3d76b0f39180b97cb31286582862787153",
+  "notes": "Sửa lỗi thiếu cột chi trả trong Excel KSKTD bằng xác nhận bộ lọc Medinet gắn với file. Chưa triển khai UPSERT."
 }
