@@ -1,0 +1,55 @@
+name: Publish v1.5.4
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-v1.5.4.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify tested package
+        env:
+          ARTIFACT_URL: "https://sdmntprnznorth.oaiusercontent.com/files/00000000-5490-820b-acb2-634ce785832e/raw?se=2026-10-05T14%3A07%3A37Z&sp=r&sv=2026-02-06&sr=b&scid=91e5c19d-172a-42b3-b3f7-d9e7418a77c3&skoid=697dc613-6c29-4a76-87a7-d1b783c6d43f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-05T03%3A54%3A40Z&ske=2026-10-06T03%3A54%3A40Z&sks=b&skv=2026-02-06&sig=rN74KniJRXQGhgLyKFqxk481y4yEKbuqX%2BR3Xr19%2BFA%3D"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "d8bdb3d861bd6940c865106bc6612bc44e02de4ff2e3d9d79530bbe8745c9c02  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+      - name: Verify portable checksum
+        id: package
+        run: |
+          PORTABLE="staging/TroLyMedinet_Portable_v1.5.4.zip"
+          EXPECTED="$(tr -d '\r\n' < "$PORTABLE.sha256" | tr 'A-F' 'a-f')"
+          echo "$EXPECTED  $PORTABLE" | sha256sum -c -
+          echo "sha=$EXPECTED" >> "$GITHUB_OUTPUT"
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.5.4 staging/TroLyMedinet_Portable_v1.5.4.zip --title "Trợ lý Medinet v1.5.4" --notes "Sửa chung bộ đọc M2/M3/M4: ưu tiên hàng tên kỹ thuật trước các hàng nhãn, nhận đúng M4 hàng 5 và M2 hàng 4, giữ nguyên khối tiêu đề/cột chuyên khoa. Bổ sung ánh xạ Đơn vị/Xã phường cho M4 thiếu chi tiết. Đối chiếu file M2/M4 mới và M3 hiện có; build Windows cùng kiểm thử M11, doanh nghiệp, KSKTD đã đạt. Cần kiểm chứng luồng Medinet/Dashboard thực tế. Chưa triển khai UPSERT."
+      - name: Update automatic update manifest
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.5.4",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.4/TroLyMedinet_Portable_v1.5.4.zip",
+            "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.4/TroLyMedinet_Portable_v1.5.4.zip",
+            "fileName": "TroLyMedinet_Portable_v1.5.4.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Sửa chung nhận diện tiêu đề nhiều tầng M2/M3/M4; giữ cột chuyên khoa và đơn vị/xã phường M4."
+          }
+          EOF
+          rm .github/workflows/publish-v1.5.4.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.5.4.yml
+          git commit -m "Publish v1.5.4 and update manifest [skip ci]"
+          git push
+
+      - name: Remove superseded release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release delete v1.5.3 --yes --cleanup-tag
