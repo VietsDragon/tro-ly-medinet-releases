@@ -1,8 +1,8 @@
 {
-  "version": "1.5.1",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.1/TroLyMedinet_Portable_v1.5.1.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.1/TroLyMedinet_Portable_v1.5.1.zip",
-  "fileName": "TroLyMedinet_Portable_v1.5.1.zip",
-  "sha256": "a7e504cf45340e599dbf145316714b3d76b0f39180b97cb31286582862787153",
-  "notes": "Sửa lỗi thiếu cột chi trả trong Excel KSKTD bằng xác nhận bộ lọc Medinet gắn với file. Chưa triển khai UPSERT."
+  "version": "1.5.2",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.2/TroLyMedinet_Portable_v1.5.2.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.2/TroLyMedinet_Portable_v1.5.2.zip",
+  "fileName": "TroLyMedinet_Portable_v1.5.2.zip",
+  "sha256": "d74e1f15db0f20e2bae98604ddd75e6298f385dd4f5760ecb0e6e849f3157f2a",
+  "notes": "Sửa xuất Excel dùng chung: chờ Office Viewer, bắt download tab mới và iframe. Chưa triển khai UPSERT."
 }
