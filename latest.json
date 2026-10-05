@@ -1,8 +1,8 @@
 {
-  "version": "1.5.3",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.3/TroLyMedinet_Portable_v1.5.3.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.3/TroLyMedinet_Portable_v1.5.3.zip",
-  "fileName": "TroLyMedinet_Portable_v1.5.3.zip",
-  "sha256": "b619b2d469bf561d0bed5e1e792e465d496c57d4df9886403a4954f7c4ee7444",
-  "notes": "Sửa bộ đọc M2 HoVaTenTre và hai hàng tiêu đề; giữ cột chuyên khoa và hành chính khi thiếu chi tiết."
+  "version": "1.5.4",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.4/TroLyMedinet_Portable_v1.5.4.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.4/TroLyMedinet_Portable_v1.5.4.zip",
+  "fileName": "TroLyMedinet_Portable_v1.5.4.zip",
+  "sha256": "d4013d85a8d443a7eab352e9f689ef7abeec867932e6afb54c3c13284215eaec",
+  "notes": "Sửa chung nhận diện tiêu đề nhiều tầng M2/M3/M4; giữ cột chuyên khoa và đơn vị/xã phường M4."
 }
