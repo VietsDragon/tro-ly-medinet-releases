@@ -1,8 +1,8 @@
 {
-  "version": "1.4.10",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.10/TroLyMedinet_Portable_v1.4.10.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.4.10/TroLyMedinet_Portable_v1.4.10.zip",
-  "fileName": "TroLyMedinet_Portable_v1.4.10.zip",
-  "sha256": "21139fab962e9481ca357c0513090b740479ce3087e81d4edaef8668731f60ab",
-  "notes": "Sửa xuống dòng trên toàn bộ file xuất; Excel/WPS tự ngắt chữ theo độ rộng cột. Giữ nhóm chẩn đoán, xét nghiệm, AutoFit và nội dung dài."
+  "version": "1.5.0",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.0/TroLyMedinet_Portable_v1.5.0.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.0/TroLyMedinet_Portable_v1.5.0.zip",
+  "fileName": "TroLyMedinet_Portable_v1.5.0.zip",
+  "sha256": "88aef6837585833501972eb42c71e133ffca441c7b5edbd8394b2c6b9668fc2e",
+  "notes": "Đồng bộ KSKTD sáu nguồn, tách chi trả doanh nghiệp, xuất CLEAN và cập nhật D12 + import Dashboard. Cần kiểm chứng lượt dữ liệu thật."
 }
