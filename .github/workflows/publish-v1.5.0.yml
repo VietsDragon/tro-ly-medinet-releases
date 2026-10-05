@@ -1,0 +1,55 @@
+name: Publish v1.5.0
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-v1.5.0.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify tested package
+        env:
+          ARTIFACT_URL: "https://sdmntpraustraliaeast.oaiusercontent.com/files/00000000-2aac-81fa-b511-76a8ad8dbb40/raw?se=2026-10-05T12%3A43%3A40Z&sp=r&sv=2026-02-06&sr=b&scid=edcc57e8-4abf-442f-a168-b68d50736542&skoid=697dc613-6c29-4a76-87a7-d1b783c6d43f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-05T06%3A44%3A35Z&ske=2026-10-06T06%3A44%3A35Z&sks=b&skv=2026-02-06&sig=0wBJXHrV9tzBdsfTcEZdhN63BNC8FrddqJYTB5TvpH4%3D"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "769425bd3c3eb13a7c66eb7412750f52b989faf552d6b5194980129729ba0a4d  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+      - name: Verify portable checksum
+        id: package
+        run: |
+          PORTABLE="staging/TroLyMedinet_Portable_v1.5.0.zip"
+          EXPECTED="$(tr -d '\r\n' < "$PORTABLE.sha256" | tr 'A-F' 'a-f')"
+          echo "$EXPECTED  $PORTABLE" | sha256sum -c -
+          echo "sha=$EXPECTED" >> "$GITHUB_OUTPUT"
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.5.0 staging/TroLyMedinet_Portable_v1.5.0.zip --title "Trợ lý Medinet v1.5.0" --notes "Thêm tác vụ Đồng bộ Dashboard KSKTD: tải sáu nguồn M2/M3/M4, lọc Ngân sách thành phố hỗ trợ, ghép theo mã phiếu và CCCD + ngày khám, xuất CLEAN và LOG. Tích hợp cập nhật D12 và import Dashboard với xác nhận dữ liệu lũy kế. Key nhập khi chạy, không lưu. Build Windows, kiểm tra Excel M11/doanh nghiệp và KSKTD đã đạt; luồng Medinet/Dashboard chưa kiểm thử end-to-end bằng dữ liệu thật."
+      - name: Update automatic update manifest
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.5.0",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.0/TroLyMedinet_Portable_v1.5.0.zip",
+            "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.0/TroLyMedinet_Portable_v1.5.0.zip",
+            "fileName": "TroLyMedinet_Portable_v1.5.0.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Đồng bộ KSKTD sáu nguồn, tách chi trả doanh nghiệp, xuất CLEAN và cập nhật D12 + import Dashboard. Cần kiểm chứng lượt dữ liệu thật."
+          }
+          EOF
+          rm .github/workflows/publish-v1.5.0.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.5.0.yml
+          git commit -m "Publish v1.5.0 and update manifest [skip ci]"
+          git push
+
+      - name: Remove superseded release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release delete v1.4.9 --yes --cleanup-tag
