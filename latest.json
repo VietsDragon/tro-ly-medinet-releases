@@ -1,8 +1,8 @@
 {
-  "version": "1.5.4",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.4/TroLyMedinet_Portable_v1.5.4.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.4/TroLyMedinet_Portable_v1.5.4.zip",
-  "fileName": "TroLyMedinet_Portable_v1.5.4.zip",
-  "sha256": "d4013d85a8d443a7eab352e9f689ef7abeec867932e6afb54c3c13284215eaec",
-  "notes": "Sửa chung nhận diện tiêu đề nhiều tầng M2/M3/M4; giữ cột chuyên khoa và đơn vị/xã phường M4."
+  "version": "1.5.5",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.5/TroLyMedinet_Portable_v1.5.5.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.5/TroLyMedinet_Portable_v1.5.5.zip",
+  "fileName": "TroLyMedinet_Portable_v1.5.5.zip",
+  "sha256": "9348301f1231b40cbc9d50be969a276619fd85416f296ae0b97286ad74a4936d",
+  "notes": "Tự chia khoảng ngày trước khi xuất nguồn KSKTD trên 40.000 hồ sơ; ghép và đối chiếu tổng dòng để tránh file thiếu do giới hạn xuất."
 }
