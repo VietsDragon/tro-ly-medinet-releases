@@ -1,0 +1,55 @@
+name: Publish v1.5.2
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-v1.5.2.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify tested package
+        env:
+          ARTIFACT_URL: "https://sdmntprnznorth.oaiusercontent.com/files/00000000-966c-820b-9e8d-348db1859418/raw?se=2026-10-05T13%3A22%3A00Z&sp=r&sv=2026-02-06&sr=b&scid=a55e921e-6e0b-4a2c-a443-abcab51b6157&skoid=697dc613-6c29-4a76-87a7-d1b783c6d43f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-05T02%3A06%3A32Z&ske=2026-10-06T02%3A06%3A32Z&sks=b&skv=2026-02-06&sig=ajmTw75qHxOaYyvmQdPvqepLzQE0jfyeC89dJsF3iDE%3D"
+        run: |
+          curl -L --fail --retry 3 "$ARTIFACT_URL" -o artifact.zip
+          echo "c9aa642a58f2f6d8df5239806e2da5d078650576b6baf2f8db4af95d11cc8b82  artifact.zip" | sha256sum -c -
+          mkdir staging
+          unzip -q artifact.zip -d staging
+      - name: Verify portable checksum
+        id: package
+        run: |
+          PORTABLE="staging/TroLyMedinet_Portable_v1.5.2.zip"
+          EXPECTED="$(tr -d '\r\n' < "$PORTABLE.sha256" | tr 'A-F' 'a-f')"
+          echo "$EXPECTED  $PORTABLE" | sha256sum -c -
+          echo "sha=$EXPECTED" >> "$GITHUB_OUTPUT"
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.5.2 staging/TroLyMedinet_Portable_v1.5.2.zip --title "Trợ lý Medinet v1.5.2" --notes "Sửa hàm xuất Excel dùng chung KSK doanh nghiệp và KSKTD: chờ Office Viewer chuyển hướng/tạo file, bắt download cả tab mới, kiểm tra nút tải trong iframe và thử lại URL file khi chưa sẵn sàng. Không dừng ngay vì chưa thấy Download file. Giữ nguyên kiểm tra Excel, số dòng, khoảng ngày và bộ lọc. Build Windows và kiểm thử Excel đã đạt; cần kiểm chứng tải Medinet thực tế. Chưa triển khai UPSERT, import vẫn yêu cầu file lũy kế đầy đủ."
+      - name: Update automatic update manifest
+        run: |
+          cat > latest.json <<EOF
+          {
+            "version": "1.5.2",
+            "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.2/TroLyMedinet_Portable_v1.5.2.zip",
+            "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.2/TroLyMedinet_Portable_v1.5.2.zip",
+            "fileName": "TroLyMedinet_Portable_v1.5.2.zip",
+            "sha256": "${{ steps.package.outputs.sha }}",
+            "notes": "Sửa xuất Excel dùng chung: chờ Office Viewer, bắt download tab mới và iframe. Chưa triển khai UPSERT."
+          }
+          EOF
+          rm .github/workflows/publish-v1.5.2.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json .github/workflows/publish-v1.5.2.yml
+          git commit -m "Publish v1.5.2 and update manifest [skip ci]"
+          git push
+
+      - name: Remove superseded release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release delete v1.5.1 --yes --cleanup-tag
