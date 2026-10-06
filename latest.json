@@ -1,8 +1,8 @@
 {
-  "version": "1.5.6",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.6/TroLyMedinet_Portable_v1.5.6.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.6/TroLyMedinet_Portable_v1.5.6.zip",
-  "fileName": "TroLyMedinet_Portable_v1.5.6.zip",
-  "sha256": "44e710ec25b403f720a5aa363032b677b31501c71c529853d95113a575c8b6cc",
-  "notes": "Khôi phục KSKTD từ file đã tải hợp lệ; xác nhận Dừng và xử lý Excel trên luồng nền."
+  "version": "1.5.7",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.7/TroLyMedinet_Portable_v1.5.7.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.7/TroLyMedinet_Portable_v1.5.7.zip",
+  "fileName": "TroLyMedinet_Portable_v1.5.7.zip",
+  "sha256": "6b9eb87c9646e8fc2d73a7436a7435d24bcbdac2779aa5e2b03b5e3da6dd787b",
+  "notes": "KSK công ty tự chia tháng khi vượt 40.000 hồ sơ; ghép và kiểm tra đủ dòng, log rõ số Medinet/Excel."
 }
