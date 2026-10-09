@@ -1,8 +1,8 @@
 {
-  "version": "1.5.7",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.7/TroLyMedinet_Portable_v1.5.7.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.7/TroLyMedinet_Portable_v1.5.7.zip",
-  "fileName": "TroLyMedinet_Portable_v1.5.7.zip",
-  "sha256": "6b9eb87c9646e8fc2d73a7436a7435d24bcbdac2779aa5e2b03b5e3da6dd787b",
-  "notes": "KSK công ty tự chia tháng khi vượt 40.000 hồ sơ; ghép và kiểm tra đủ dòng, log rõ số Medinet/Excel."
+  "version": "1.5.8",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.8/TroLyMedinet_Portable_v1.5.8.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.8/TroLyMedinet_Portable_v1.5.8.zip",
+  "fileName": "TroLyMedinet_Portable_v1.5.8.zip",
+  "sha256": "4777a6ee2a503e3387b1396ad0a8cb513a7386ae14e388c0d9a4db4e71649c09",
+  "notes": "Đồng bộ M2/M3/M4/CT từ 7 nguồn, dùng chung M3 chi tiết; import bốn sheet và tiếp tục dù có ca cần kiểm tra."
 }
