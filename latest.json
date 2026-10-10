@@ -1,8 +1,8 @@
 {
-  "version": "1.5.10",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.10/TroLyMedinet_Portable_v1.5.10.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.10/TroLyMedinet_Portable_v1.5.10.zip",
-  "fileName": "TroLyMedinet_Portable_v1.5.10.zip",
-  "sha256": "e9538e74a468fed6901833e41adbc1b40eff7012efcc4c0d2e300645994d7743",
-  "notes": "Bộ lọc nguy cơ chỉnh trực tiếp; ngưỡng mặc định đã sửa đơn vị; chọn cột và đơn vị nguồn trước khi áp dụng. Hiện hỗ trợ xem trước."
+  "version": "1.6.0",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.0/TroLyMedinet_Portable_v1.6.0.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.0/TroLyMedinet_Portable_v1.6.0.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.0.zip",
+  "sha256": "9990a6a7badcffd4130a77d4cbb944cff840f8ee52423703b834171b4c2c833e",
+  "notes": "Nguy cơ cao xuất Excel đầy đủ; lưu phiên qua thoát app cho bốn module; giao diện thống nhất hiện đại. Đã kiểm thử và kiểm tra gói Windows."
 }
