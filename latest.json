@@ -1,8 +1,8 @@
 {
-  "version": "1.5.9",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.9/TroLyMedinet_Portable_v1.5.9.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.9/TroLyMedinet_Portable_v1.5.9.zip",
-  "fileName": "TroLyMedinet_Portable_v1.5.9.zip",
-  "sha256": "c3849d0eb5d8e08c0a2627083257d8d30d3b062deea01ec67759a5e243719cdf",
-  "notes": "Một file M2/M3/M4/CT; CT có tên công ty và ngày khám; tự import có preview; KSK công ty Loại I đề nghị Sức khỏe bình thường."
+  "version": "1.5.10",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.10/TroLyMedinet_Portable_v1.5.10.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.10/TroLyMedinet_Portable_v1.5.10.zip",
+  "fileName": "TroLyMedinet_Portable_v1.5.10.zip",
+  "sha256": "e9538e74a468fed6901833e41adbc1b40eff7012efcc4c0d2e300645994d7743",
+  "notes": "Bộ lọc nguy cơ chỉnh trực tiếp; ngưỡng mặc định đã sửa đơn vị; chọn cột và đơn vị nguồn trước khi áp dụng. Hiện hỗ trợ xem trước."
 }
