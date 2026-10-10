@@ -1,0 +1,41 @@
+name: Publish tested Medinet 1.5.9
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/publish-159.yml"]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified portable package
+        env:
+          PACKAGE_URL: 'https://sdmntprseasia.oaiusercontent.com/files/00000000-254c-8207-86cf-12eaa9603ffd/raw?se=2026-10-10T11%3A45%3A45Z&sp=r&sv=2026-02-06&sr=b&scid=25bad78f-4819-46d5-93ba-200072c9137b&skoid=ca37c3ec-ab43-496e-be5f-4684c5519a26&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-10T00%3A20%3A42Z&ske=2026-10-11T00%3A20%3A42Z&sks=b&skv=2026-02-06&sig=Hz69S%2Bq/1VyqAYMUSGFib8ytLVhao3mCPNj2Eyh6Wm0%3D'
+        run: |
+          curl --fail --silent --show-error --location "$PACKAGE_URL" -o package.zip
+          unzip package.zip -d package
+          cd package
+          expected=$(cat TroLyMedinet_Portable_v1.5.9.zip.sha256 | tr -d '\r\n')
+          echo "$expected  TroLyMedinet_Portable_v1.5.9.zip" | sha256sum --check
+      - name: Publish release and updater manifest
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          cat > notes.txt <<'EOF'
+          Sửa app Trợ lý Medinet: một workbook dữ liệu M2/M3/M4/CT; CT giữ cấu trúc M3 chi tiết, thêm tên công ty ở cuối, giữ ngày khám Excel. Nhật ký lưu riêng. Tương thích bộ đọc XLSX Dashboard hiện tại; tự mở khóa, cập nhật D12, kiểm tra đủ bốn mẫu và hiển thị preview để xác nhận trước khi áp dụng. Không tự lặp ghi khi kết quả chưa xác định. Module KSK công ty: Loại I ở cột N thì đề nghị ở cột P là Sức khỏe bình thường. Build Windows, kiểm thử Excel và sáu tình huống automation đã PASS. Chưa xác minh toàn luồng Medinet/Firebase trên dữ liệu Production; không triển khai source Dashboard.
+          EOF
+          gh release create v1.5.9 package/TroLyMedinet_Portable_v1.5.9.zip package/TroLyMedinet_Portable_v1.5.9.zip.sha256 --title 'Trợ lý Medinet v1.5.9' --notes-file notes.txt --latest
+          python3 - <<'PY'
+          import json,pathlib,base64,subprocess
+          filename='TroLyMedinet_Portable_v1.5.9.zip'
+          url='https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.5.9/'+filename
+          sha=pathlib.Path('package/'+filename+'.sha256').read_text().strip().lower()
+          manifest=dict(version='1.5.9',url=url,downloadUrl=url,fileName=filename,sha256=sha,notes='Một file M2/M3/M4/CT; CT có tên công ty và ngày khám; tự import có preview; KSK công ty Loại I đề nghị Sức khỏe bình thường.')
+          existing=json.loads(subprocess.check_output(['gh','api','repos/VietsDragon/tro-ly-medinet-releases/contents/latest.json']))
+          payload=dict(message='Publish updater manifest for tested Medinet v1.5.9',sha=existing['sha'],content=base64.b64encode((json.dumps(manifest,ensure_ascii=False,indent=2)+'\n').encode()).decode())
+          pathlib.Path('manifest-request.json').write_text(json.dumps(payload))
+          subprocess.run(['gh','api','--method','PUT','repos/VietsDragon/tro-ly-medinet-releases/contents/latest.json','--input','manifest-request.json'],check=True,stdout=subprocess.DEVNULL)
+          PY
