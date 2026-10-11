@@ -1,8 +1,8 @@
 {
-  "version": "1.6.1",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.1/TroLyMedinet_Portable_v1.6.1.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.1/TroLyMedinet_Portable_v1.6.1.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.1.zip",
-  "sha256": "fdda4e6cc38202a29df4d23e465c415d04fc13dfb7a6c3f6c932d357bb04604d",
-  "notes": "Giao diện Bàn làm việc thống nhất cho bốn module: thiết lập bên trái, kết quả bên phải, tiến độ và thao tác luôn hiện. Giữ bộ lọc nguy cơ cao, xuất Excel và tiếp tục phiên sau khi đóng app. Đã kiểm tra gói Windows và giao diện."
+  "version": "1.6.2",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.2/TroLyMedinet_Portable_v1.6.2.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.2/TroLyMedinet_Portable_v1.6.2.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.2.zip",
+  "sha256": "89b839e7d38e5c8db372558c64c48ff72b13bc7ce1b8ae12b24a1549f07457fb",
+  "notes": "Sửa chờ tải Excel/popup Edge; xuất Excel nguy cơ cao chạy nền, hiện tiến độ và lưu phiên; bộ lọc/ngưỡng gọn hơn. Giữ nguyên ngưỡng, cách ghép và dữ liệu phiên."
 }
