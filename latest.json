@@ -1,8 +1,8 @@
 {
-  "version": "1.6.2",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.2/TroLyMedinet_Portable_v1.6.2.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.2/TroLyMedinet_Portable_v1.6.2.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.2.zip",
-  "sha256": "89b839e7d38e5c8db372558c64c48ff72b13bc7ce1b8ae12b24a1549f07457fb",
-  "notes": "Sửa chờ tải Excel/popup Edge; xuất Excel nguy cơ cao chạy nền, hiện tiến độ và lưu phiên; bộ lọc/ngưỡng gọn hơn. Giữ nguyên ngưỡng, cách ghép và dữ liệu phiên."
+  "version": "1.6.3",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.3/TroLyMedinet_Portable_v1.6.3.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.3/TroLyMedinet_Portable_v1.6.3.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.3.zip",
+  "sha256": "40f728cdd19f8a605c6f14b52990fef1c32733ca5297f2735aa3d072cddbe2da",
+  "notes": "Sửa bộ lọc M3/M4: tách chỉ số CBC/nước tiểu theo nhãn; xác nhận nguồn và đơn vị theo đơn vị khám; phân biệt chưa đánh giá với không khớp. Lọc lại phiên hoàn tất từ dữ liệu đã tải, giữ kết quả cũ. Sau cập nhật: Phiên làm việc → Lọc lại → Nguồn xét nghiệm / đơn vị."
 }
