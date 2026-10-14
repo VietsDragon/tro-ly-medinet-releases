@@ -1,8 +1,8 @@
 {
-  "version": "1.6.3",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.3/TroLyMedinet_Portable_v1.6.3.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.3/TroLyMedinet_Portable_v1.6.3.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.3.zip",
-  "sha256": "40f728cdd19f8a605c6f14b52990fef1c32733ca5297f2735aa3d072cddbe2da",
-  "notes": "Sửa bộ lọc M3/M4: tách chỉ số CBC/nước tiểu theo nhãn; xác nhận nguồn và đơn vị theo đơn vị khám; phân biệt chưa đánh giá với không khớp. Lọc lại phiên hoàn tất từ dữ liệu đã tải, giữ kết quả cũ. Sau cập nhật: Phiên làm việc → Lọc lại → Nguồn xét nghiệm / đơn vị."
+  "version": "1.6.4",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.4/TroLyMedinet_Portable_v1.6.4.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.4/TroLyMedinet_Portable_v1.6.4.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.4.zip",
+  "sha256": "507c90caaf7d8384eedc689dfa53db552b5665fe721131372db7dab23419a988",
+  "notes": "Dashboard thêm Người dân tự chi trả cho M2/M3/M4: tải danh sách riêng theo hai bộ lọc, dùng chung chi tiết, ghép vào cùng sheet và ghi nguồn thanh toán. Tiếp tục phiên cũ giữ nguồn hợp lệ, tải thêm tự chi trả và tạo lại kết quả trước khi xem trước/áp dụng."
 }
