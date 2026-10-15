@@ -1,8 +1,8 @@
 {
-  "version": "1.6.4",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.4/TroLyMedinet_Portable_v1.6.4.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.4/TroLyMedinet_Portable_v1.6.4.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.4.zip",
-  "sha256": "507c90caaf7d8384eedc689dfa53db552b5665fe721131372db7dab23419a988",
-  "notes": "Dashboard thêm Người dân tự chi trả cho M2/M3/M4: tải danh sách riêng theo hai bộ lọc, dùng chung chi tiết, ghép vào cùng sheet và ghi nguồn thanh toán. Tiếp tục phiên cũ giữ nguồn hợp lệ, tải thêm tự chi trả và tạo lại kết quả trước khi xem trước/áp dụng."
+  "version": "1.6.5",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.5/TroLyMedinet_Portable_v1.6.5.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.5/TroLyMedinet_Portable_v1.6.5.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.5.zip",
+  "sha256": "5c7c006478d0daae619fe350a602e35af9a41d02576bac717f3f46a9c57807b2",
+  "notes": "Dashboard: file chung gồm M2/M3/M4 ngân sách, M2_TUCHITRA/M3_TUCHITRA/M4_TUCHITRA tự chi trả và CT doanh nghiệp. App tự chọn File chung, xem trước đủ nguồn và nhận thông báo Dashboard mới. Phiên cũ tạo lại kết quả theo bảy sheet từ nguồn còn hợp lệ."
 }
