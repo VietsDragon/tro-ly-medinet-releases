@@ -1,8 +1,8 @@
 {
-  "version": "1.6.9",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.9/TroLyMedinet_Portable_v1.6.9.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.9/TroLyMedinet_Portable_v1.6.9.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.9.zip",
-  "sha256": "11b5bd8a02e3c9a7ce9f3cf8d02fbfa6cef1787e34ee6df0585861e26e88b895",
-  "notes": "Nguy cơ cao: tự hiện xác nhận đơn vị còn thiếu theo M3/M4 và đơn vị khám, lưu dùng lại khi mở app/tiếp tục phiên. Có bộ điền để kiểm tra, cho phép đổi Hb g/L/g/dL trước khi xác nhận. eGFR báo đúng dữ liệu còn thiếu. Đã qua 158 kiểm tra dữ liệu và toàn bộ kiểm tra Windows/Excel/phiên."
+  "version": "1.6.10",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.10/TroLyMedinet_Portable_v1.6.10.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.10/TroLyMedinet_Portable_v1.6.10.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.10.zip",
+  "sha256": "5f462d46b945774d512efe8833ed78710b4c30c08653e5f3a62fb0ddb432952d",
+  "notes": "Nguy cơ cao: dùng bảng đơn vị đã chốt làm mặc định chung M3/M4 trước khi chạy. Thêm Đơn vị xét nghiệm trong Bộ lọc, chọn lại và lưu khi cần; bỏ xác nhận sau lọc. Đổi đơn vị tính lại kết quả và lưu theo phiên. Đã qua 166 kiểm tra dữ liệu và toàn bộ kiểm tra Windows."
 }
