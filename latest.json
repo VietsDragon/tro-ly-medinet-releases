@@ -1,8 +1,8 @@
 {
-  "version": "1.6.5",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.5/TroLyMedinet_Portable_v1.6.5.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.5/TroLyMedinet_Portable_v1.6.5.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.5.zip",
-  "sha256": "5c7c006478d0daae619fe350a602e35af9a41d02576bac717f3f46a9c57807b2",
-  "notes": "Dashboard: file chung gồm M2/M3/M4 ngân sách, M2_TUCHITRA/M3_TUCHITRA/M4_TUCHITRA tự chi trả và CT doanh nghiệp. App tự chọn File chung, xem trước đủ nguồn và nhận thông báo Dashboard mới. Phiên cũ tạo lại kết quả theo bảy sheet từ nguồn còn hợp lệ."
+  "version": "1.6.7",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.7/TroLyMedinet_Portable_v1.6.7.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.7/TroLyMedinet_Portable_v1.6.7.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.7.zip",
+  "sha256": "7175021da465a09f9ba5d691458355d584c90920a6f86ea502e66570c9fd8896",
+  "notes": "Xuất Excel nguy cơ cao nhanh hơn, ít tốn bộ nhớ. Kết quả và lý do cảnh báo gọn rõ, giữ nguyên dữ liệu gốc. Đổi ngày/bộ lọc không dùng nhầm kết quả; xuất lại giữ nguyên phiên cũ. Áp dụng ngưỡng M3/M4, glucose đói tạm thời, quy đổi niệu UC-3500 và tính eGFR khi đủ dữ liệu. Đã qua 132 kiểm tra dữ liệu và kiểm tra giao diện Windows."
 }
