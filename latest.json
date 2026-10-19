@@ -1,8 +1,8 @@
 {
-  "version": "1.6.10",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.10/TroLyMedinet_Portable_v1.6.10.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.10/TroLyMedinet_Portable_v1.6.10.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.10.zip",
-  "sha256": "5f462d46b945774d512efe8833ed78710b4c30c08653e5f3a62fb0ddb432952d",
-  "notes": "Nguy cơ cao: dùng bảng đơn vị đã chốt làm mặc định chung M3/M4 trước khi chạy. Thêm Đơn vị xét nghiệm trong Bộ lọc, chọn lại và lưu khi cần; bỏ xác nhận sau lọc. Đổi đơn vị tính lại kết quả và lưu theo phiên. Đã qua 166 kiểm tra dữ liệu và toàn bộ kiểm tra Windows."
+  "version": "1.6.11",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.11/TroLyMedinet_Portable_v1.6.11.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.11/TroLyMedinet_Portable_v1.6.11.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.11.zip",
+  "sha256": "9ae1bd44d0b8430320c7b009cd7d6c6b74c9fd7088547a71d27bf0ab2fd05d77",
+  "notes": "Nguy cơ cao: Excel gọn, mỗi ca một dòng với thông tin liên hệ và giá trị cảnh báo. Bỏ tên quy tắc, ghi chú đường đói và diễn giải quy đổi; giữ dữ liệu gốc riêng trong ĐỐI CHIẾU. Tổng hợp rõ, hàng xen màu, cố định tiêu đề. Giữ nguyên ngưỡng và đơn vị mặc định trước khi lọc. Đã qua 170 kiểm tra dữ liệu và toàn bộ kiểm tra Windows."
 }
