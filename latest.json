@@ -1,8 +1,8 @@
 {
-  "version": "1.6.7",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.7/TroLyMedinet_Portable_v1.6.7.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.7/TroLyMedinet_Portable_v1.6.7.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.7.zip",
-  "sha256": "7175021da465a09f9ba5d691458355d584c90920a6f86ea502e66570c9fd8896",
-  "notes": "Xuất Excel nguy cơ cao nhanh hơn, ít tốn bộ nhớ. Kết quả và lý do cảnh báo gọn rõ, giữ nguyên dữ liệu gốc. Đổi ngày/bộ lọc không dùng nhầm kết quả; xuất lại giữ nguyên phiên cũ. Áp dụng ngưỡng M3/M4, glucose đói tạm thời, quy đổi niệu UC-3500 và tính eGFR khi đủ dữ liệu. Đã qua 132 kiểm tra dữ liệu và kiểm tra giao diện Windows."
+  "version": "1.6.8",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.8/TroLyMedinet_Portable_v1.6.8.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.8/TroLyMedinet_Portable_v1.6.8.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.8.zip",
+  "sha256": "73461e2f45ca362ca1a4d94b1eb2fece7401d843a3bdaa3a18ff5796484972dc",
+  "notes": "Nguy cơ cao: thêm Nguồn hồ sơ M3/M4 → Toàn bộ khám · file chi tiết, gồm ngân sách, người dân tự chi trả và người sử dụng lao động chi trả có trong file. Vẫn có lựa chọn danh sách chuẩn ngân sách. Phiên cũ giữ đúng phạm vi; đổi nguồn bắt đầu phiên mới. Đã qua 147 kiểm tra dữ liệu và kiểm tra trình duyệt/giao diện Windows."
 }
