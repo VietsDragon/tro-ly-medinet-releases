@@ -1,8 +1,8 @@
 {
-  "version": "1.6.12",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.12/TroLyMedinet_Portable_v1.6.12.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.12/TroLyMedinet_Portable_v1.6.12.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.12.zip",
-  "sha256": "a5a6a182500d7904bedaffe7168dd1ca412e8b40094ef5e33807467b09b74c14",
-  "notes": "Nguy cơ cao: chặn kết quả máu/creatinin/eGFR/AST/ALT bằng 0 hoặc âm khỏi so ngưỡng, giữ gốc và chuyển kiểm tra dữ liệu; vẫn giữ cảnh báo khác hợp lệ. Zero nước tiểu vẫn hợp lệ. Xuất theo bố cục mẫu, ẩn sheet đối soát; tối ưu tìm cột đường máu. Giữ nguyên ngưỡng/đơn vị. Đã qua 205 kiểm tra dữ liệu và toàn bộ kiểm tra Windows. Cập nhật rồi Lọc lại phiên cũ để xuất kết quả mới."
+  "version": "1.6.13",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.13/TroLyMedinet_Portable_v1.6.13.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.13/TroLyMedinet_Portable_v1.6.13.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.13.zip",
+  "sha256": "303c3e29793b1bc68d2ef8aa36683ef966aeca96c7a64d1fc2c8c13c73b91ad3",
+  "notes": "Xuất nguy cơ cao đúng form mẫu mới: danh sách chính cố định 13 cột, bỏ cột Cần bổ sung; tổng hợp hai số và bảng xã đúng vị trí, nguồn Cổng QLSKCĐ Medinet, thứ tự Đông Thạnh/Hóc Môn/Bà Điểm/Xuân Thới Sơn. Tên file tiếng Việt theo khoảng ngày. Giữ thông tin đối soát ở sheet ẩn; giữ nguyên phân loại/đơn vị/ngưỡng của 1.6.12. Đã qua 211 kiểm tra dữ liệu và toàn bộ kiểm tra Windows. Mở lại phiên rồi xuất file mới."
 }
