@@ -1,8 +1,8 @@
 {
-  "version": "1.6.11",
-  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.11/TroLyMedinet_Portable_v1.6.11.zip",
-  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.11/TroLyMedinet_Portable_v1.6.11.zip",
-  "fileName": "TroLyMedinet_Portable_v1.6.11.zip",
-  "sha256": "9ae1bd44d0b8430320c7b009cd7d6c6b74c9fd7088547a71d27bf0ab2fd05d77",
-  "notes": "Nguy cơ cao: Excel gọn, mỗi ca một dòng với thông tin liên hệ và giá trị cảnh báo. Bỏ tên quy tắc, ghi chú đường đói và diễn giải quy đổi; giữ dữ liệu gốc riêng trong ĐỐI CHIẾU. Tổng hợp rõ, hàng xen màu, cố định tiêu đề. Giữ nguyên ngưỡng và đơn vị mặc định trước khi lọc. Đã qua 170 kiểm tra dữ liệu và toàn bộ kiểm tra Windows."
+  "version": "1.6.12",
+  "url": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.12/TroLyMedinet_Portable_v1.6.12.zip",
+  "downloadUrl": "https://github.com/VietsDragon/tro-ly-medinet-releases/releases/download/v1.6.12/TroLyMedinet_Portable_v1.6.12.zip",
+  "fileName": "TroLyMedinet_Portable_v1.6.12.zip",
+  "sha256": "a5a6a182500d7904bedaffe7168dd1ca412e8b40094ef5e33807467b09b74c14",
+  "notes": "Nguy cơ cao: chặn kết quả máu/creatinin/eGFR/AST/ALT bằng 0 hoặc âm khỏi so ngưỡng, giữ gốc và chuyển kiểm tra dữ liệu; vẫn giữ cảnh báo khác hợp lệ. Zero nước tiểu vẫn hợp lệ. Xuất theo bố cục mẫu, ẩn sheet đối soát; tối ưu tìm cột đường máu. Giữ nguyên ngưỡng/đơn vị. Đã qua 205 kiểm tra dữ liệu và toàn bộ kiểm tra Windows. Cập nhật rồi Lọc lại phiên cũ để xuất kết quả mới."
 }
